@@ -1,0 +1,42 @@
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+
+const mongourl="mongodb+srv://Santhosh:Santhosh@cluster0.ldd9p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+import router from "./Routes/One.js";
+async function Connect() {
+    try{
+        const mongo = await mongoose.connect(mongourl)
+        console.log("Connected to Database")
+    }catch(e){
+        console.log(e+"Error Connecting to Database")
+    }
+}
+
+Connect();
+
+const app = express()
+const port = 3123
+app.use(express.json());
+app.use(cors());
+
+
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
+
+app.get("/", (req, res) => {
+    res.send("<h1>Hello,I am Server</h1>");
+});
+app.use("/api/", router);
+
+app.listen(port,()=>{
+    console.log("Server Running on "+port)
+})

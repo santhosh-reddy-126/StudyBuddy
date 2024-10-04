@@ -1,0 +1,24 @@
+.MainDay{
+    background-color: #08D9D6;
+    width: 97%;
+    margin-left: 3%;
+    border: 8px solid #EAEAEA;
+    border-radius: 15px;
+}
+
+.MainDay>h2{
+    border-right: 8px solid #EAEAEA;
+    border-bottom: 8px solid #EAEAEA;
+    border-radius: 0px 0px 10px 0px;
+    margin-top: 0px;
+    padding: 4px;
+    color: #252A34;
+    width: fit-content;
+}
+
+.classes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}

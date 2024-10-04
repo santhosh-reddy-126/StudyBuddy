@@ -1,0 +1,14 @@
+
+.holder{
+    display: flex;
+    flex-direction: row;
+}
+.MainSection{
+    width: 100%;
+    margin-top: 250px;
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #08D9D6;
+}
+
+
