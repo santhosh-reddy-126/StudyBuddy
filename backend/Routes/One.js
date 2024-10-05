@@ -72,9 +72,9 @@ function calculateDuration12Hour(startTime, endTime) {
         let minutes = parseInt(time.minutes);
 
         if (time.period === 'PM' && hours !== 12) {
-            hours += 12; 
+            hours += 12;
         } else if (time.period === 'AM' && hours === 12) {
-            hours = 0; 
+            hours = 0;
         }
 
         return hours * 60 + minutes;
@@ -84,7 +84,7 @@ function calculateDuration12Hour(startTime, endTime) {
     const endMinutes = convertToMinutes(endTime);
     let diffMinutes = endMinutes - startMinutes;
     if (diffMinutes < 0) {
-        diffMinutes += 24 * 60; 
+        diffMinutes += 24 * 60;
     }
 
     const diffHours = Math.floor(diffMinutes / 60);
@@ -152,15 +152,15 @@ router.post("/getClass", async (req, res) => {
         console.log(e);
     }
 })
-const week=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 function timeToMinutes(hour, minute, period) {
-    hour=parseInt(hour, 10);
-    minute=parseInt(minute, 10);
+    hour = parseInt(hour, 10);
+    minute = parseInt(minute, 10);
     const hh = (period === "PM" && hour !== 12) ? hour + 12 : (period === "AM" && hour === 12) ? 0 : hour;
-    return hh * 60 + minute; 
+    return hh * 60 + minute;
 }
 
-function sortByDay(array,day) {
+function sortByDay(array, day) {
     const class1 = array.filter(item => item.day === week[day.getDay()]);
     return class1.sort((a, b) => {
         const aStartTime = timeToMinutes(a.fh, a.fm, a.fs);
@@ -171,45 +171,53 @@ function sortByDay(array,day) {
 
 
 
-router.post("/getRecentClass",async(req,res)=>{
-    try{
-        
-        const data = await user.findOne({username:req.body.username});
+router.post("/getRecentClass", async (req, res) => {
+    try {
+        const data = await user.findOne({ username: req.body.username });
         let istOffset = 5 * 60 * 60 * 1000 + 30 * 60 * 1000;
         let MyDay = new Date();
         MyDay = new Date(MyDay.getTime() + istOffset);
-        let maxiter=7;
-        let iter=0
-        while(iter<maxiter){
-            if(sortByDay(data.class,MyDay).length!=0){
-                let k = sortByDay(data.class,MyDay);
-                let tim1=timeToMinutes(k[k.length-1].th,k[k.length-1].tm,k[k.length-1].ts);
-                let tim2=MyDay.getHours()*60+MyDay.getMinutes();
-                if(tim2<tim1){
+        let maxiter = 7;
+        let iter = 0;
+        while (iter < maxiter) {
+            if (sortByDay(data.class, MyDay).length != 0) {
+                let k = sortByDay(data.class, MyDay);
+                let tim1 = timeToMinutes(k[k.length - 1].th, k[k.length - 1].tm, k[k.length - 1].ts);
+                let tim2 = MyDay.getUTCHours() * 60 + MyDay.getUTCMinutes();
+                if (tim2 < tim1) {
                     break;
                 }
             }
-            MyDay.setDate(MyDay.getDate()+1);
-            iter=iter+1;
+            MyDay.setDate(MyDay.getDate() + 1);
+            iter = iter + 1;
         }
-        const sortedClass = sortByDay(data.class,MyDay)
+        const sortedClass = sortByDay(data.class, MyDay)
         let tim3 = MyDay.getUTCHours() * 60 + MyDay.getUTCMinutes();
-        let sent=false;
-        for(let i=0;i<sortedClass.length;i++){
-            if(timeToMinutes(sortedClass[i].fh,sortedClass[i].fm,sortedClass[i].fs)<tim3 && tim3<timeToMinutes(sortedClass[i].th,sortedClass[i].tm,sortedClass[i].ts)){
-                sent=true;
-                res.send({success:true,ongoing:true,remaining: timeToMinutes(sortedClass[i].th,sortedClass[i].tm,sortedClass[i].ts)-tim3,data: sortedClass[i],days:iter});
-                break;
-            }   
+        let sent = false;
+        if (!sent && iter > 0) {
+            sent = true;
+            let rem = timeToMinutes(sortedClass[0].fh, sortedClass[0].fm, sortedClass[0].fs) - tim3;
+            if (rem < 0) {
+                iter = iter - 1;
+                rem = 1440 + rem;
+            }
+            res.send({ success: true, ongoing: false, remaining: rem, data: sortedClass[0], days: iter });
         }
-        for(let i=0;i<sortedClass.length;i++){
-            if(timeToMinutes(sortedClass[i].fh,sortedClass[i].fm,sortedClass[i].fs)>tim3 && !sent){
-                res.send({success:true,ongoing:false,remaining: timeToMinutes(sortedClass[i].fh,sortedClass[i].fm,sortedClass[i].fs)-tim3,data: sortedClass[i],days:iter});
+        for (let i = 0; i < sortedClass.length; i++) {
+            if (timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) <= tim3 && tim3 <= timeToMinutes(sortedClass[i].th, sortedClass[i].tm, sortedClass[i].ts) && !sent) {
+                sent = true;
+                res.send({ success: true, ongoing: true, remaining: timeToMinutes(sortedClass[i].th, sortedClass[i].tm, sortedClass[i].ts) - tim3, data: sortedClass[i], days: iter });
                 break;
             }
         }
-        
-    }catch(e){
+        for (let i = 0; i < sortedClass.length; i++) {
+            if (timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) >= tim3 && !sent) {
+                res.send({ success: true, ongoing: false, remaining: timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) - tim3, data: sortedClass[i], days: iter });
+                break;
+            }
+        }
+
+    } catch (e) {
         console.log(e);
     }
 });
