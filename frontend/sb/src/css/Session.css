@@ -1,0 +1,39 @@
+.head{
+    display: flex;
+    flex-direction: row;
+    color: #FF2E63;
+    justify-content: flex-end;
+    gap: 42.5%;
+}
+
+.head>h1{
+    font-size: 50px;
+}
+
+
+.Timer>h1{
+    font-size: 500px;
+    margin-top: 0px;
+    text-align: center;
+    color: #FF2E63;
+    margin-bottom: -100px;
+}
+
+.Timer>h2{
+    margin-top: 0px;
+    font-size: 100px;
+    text-align: center;
+    color: #FF2E63;
+}
+
+
+.warn{
+    color: #EAEAEA;
+    background-color: #FF2E63;
+    width: 100%;
+    height: 350px;
+    font-size: 30px;
+    text-align: center;
+    align-content: center;
+}
+

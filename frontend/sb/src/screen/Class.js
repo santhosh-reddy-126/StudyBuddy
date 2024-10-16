@@ -1,6 +1,5 @@
 import React, { useEffect, useState,useRef } from 'react'
 import Nav from '../components/Nav'
-import Navs from '../components/Navs'
 import "../css/Class.css";
 import Day from '../components/Day';
 const blink = "http://localhost:3123"
@@ -129,7 +128,6 @@ export default function Class() {
           <Day day="Saturday" data={classs} func={getClass}/>
           <Day day="Sunday" data={classs} func={getClass}/>
         </div>
-        <Navs />
       </div>
       {popped ? <div className='popup'>
             <h2>Add your class</h2>

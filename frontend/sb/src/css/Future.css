@@ -6,3 +6,47 @@
     color: #252A34;
 }
 
+.UserFiles{
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 50px;
+}
+.UserFiles>h1{
+    text-align: left;
+    color: #FF2E63;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.FileUnit{
+    color: #08D9D6;
+    background-color: transparent;
+    border: 1px solid #08D9D6;
+    background-image: linear-gradient(to right,#252A34,#55668c);
+    padding: 10px;
+    width: 400px;
+    height: 30px;
+}
+
+.FileUnit>h3{
+    cursor: pointer;
+}
+
+.userfiles2{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.userfiles2 h1{
+    color: #08D9D6;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.userfiles3{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    flex-wrap: nowrap;
+}

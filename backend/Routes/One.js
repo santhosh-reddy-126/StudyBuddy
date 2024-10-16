@@ -192,7 +192,13 @@ router.post("/getRecentClass", async (req, res) => {
             iter = iter + 1;
         }
         const sortedClass = sortByDay(data.class, MyDay)
-        let tim3 = MyDay.getUTCHours() * 60 + MyDay.getUTCMinutes();
+        let noOfdays = Math.abs(new Date().getDay() - week.indexOf(sortedClass[0].day));
+        if(noOfdays>1){
+            noOfdays=noOfdays-1;
+        }else{
+            noOfdays=0;
+        }
+        let tim3 = MyDay.getUTCHours() * 60 + MyDay.getUTCMinutes(); 
         let sent = false;
         if (!sent && iter > 0) {
             sent = true;
@@ -201,18 +207,18 @@ router.post("/getRecentClass", async (req, res) => {
                 iter = iter - 1;
                 rem = 1440 + rem;
             }
-            res.send({ success: true, ongoing: false, remaining: rem, data: sortedClass[0], days: iter });
+            res.send({ success: true, ongoing: false, remaining: rem, data: sortedClass[0], days: noOfdays });
         }
         for (let i = 0; i < sortedClass.length; i++) {
             if (timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) <= tim3 && tim3 <= timeToMinutes(sortedClass[i].th, sortedClass[i].tm, sortedClass[i].ts) && !sent) {
                 sent = true;
-                res.send({ success: true, ongoing: true, remaining: timeToMinutes(sortedClass[i].th, sortedClass[i].tm, sortedClass[i].ts) - tim3, data: sortedClass[i], days: iter });
+                res.send({ success: true, ongoing: true, remaining: timeToMinutes(sortedClass[i].th, sortedClass[i].tm, sortedClass[i].ts) - tim3, data: sortedClass[i], days: 0 });
                 break;
             }
         }
         for (let i = 0; i < sortedClass.length; i++) {
             if (timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) >= tim3 && !sent) {
-                res.send({ success: true, ongoing: false, remaining: timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) - tim3, data: sortedClass[i], days: iter });
+                res.send({ success: true, ongoing: false, remaining: timeToMinutes(sortedClass[i].fh, sortedClass[i].fm, sortedClass[i].fs) - tim3, data: sortedClass[i], days: noOfdays });
                 break;
             }
         }

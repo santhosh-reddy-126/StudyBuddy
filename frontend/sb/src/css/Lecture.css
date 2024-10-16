@@ -28,3 +28,45 @@
     z-index: 20;
 }
 
+.GameChanging,.Considerable,.Negligible{
+    margin-top: 20px;
+    margin-left: 5%;
+}
+
+.GameChanging>h1,.Considerable>h1,.Negligible>h1{
+    color: #08D9D6;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 25px;
+}
+
+.GameChanging>.items,.Considerable>.items,.Negligible>.items{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.Future2{
+    padding: 20px;
+    height: 240px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    color: #252A34;
+    width: 400px;
+    background-color: #EAEAEA;
+    height: fit-content;
+}
+
+.Future2 p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.dt{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Future2:hover{
+    background-color: #d4d4d4;
+}

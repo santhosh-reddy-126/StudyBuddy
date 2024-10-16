@@ -4,6 +4,7 @@ import cors from "cors";
 
 const mongourl="mongodb+srv://Santhosh:Santhosh@cluster0.ldd9p.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 import router from "./Routes/One.js";
+import router2 from "./Routes/Two.js";
 async function Connect() {
     try{
         const mongo = await mongoose.connect(mongourl)
@@ -36,7 +37,7 @@ app.get("/", (req, res) => {
     res.send("<h1>Hello,I am Server</h1>");
 });
 app.use("/api/", router);
-
+app.use("/api/", router2);
 app.listen(port,()=>{
     console.log("Server Running on "+port)
 })
