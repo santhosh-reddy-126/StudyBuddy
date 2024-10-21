@@ -2,8 +2,13 @@
     display: flex;
     flex-direction: row;
     color: #FF2E63;
-    justify-content: flex-end;
-    gap: 42.5%;
+    justify-content:space-evenly;
+}
+
+.head>#btn{
+    width: 300px;
+    height: 60px;
+    font-size: 30px;
 }
 
 .head>h1{
@@ -24,6 +29,27 @@
     font-size: 100px;
     text-align: center;
     color: #FF2E63;
+}
+
+textarea{
+    width: 300px;
+    height: 300px;
+    color: #FF2E63;
+    font-size: 20px;
+}
+
+
+
+.Notepad{
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.Timer{
+    position: relative;
 }
 
 

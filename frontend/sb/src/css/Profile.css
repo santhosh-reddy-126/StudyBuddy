@@ -1,0 +1,79 @@
+.ProfilePart{
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10%;
+}
+
+.ProfilePart>img{
+    border: 10px solid #252A34;
+    border-radius: 44% 56% 70% 30% / 63% 54% 46% 37% ;
+}
+
+
+.ProfileText>h1{
+    color: #08D9D6;
+    font-size: 50px;
+}
+
+.ProfileText>p{
+    color: #08D9D6;
+    font-size: 30px;
+}
+
+.Stats>h1{
+    font-size: 40px;
+    color: #08D9D6;
+}
+
+.Stats>h1>span{
+    color: #FF2E63;
+}
+
+.Stats{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Friends>input{
+    width: 80%;
+    height: 50px;
+    border: 1px solid #FF2E63;
+    font-size: 30px;
+    color: #08D9D6;
+}
+
+.Friends{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Friends>h1{
+    font-size: 40px;
+    color: #08D9D6;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.displayFriends>h1{
+    background-color: #EAEAEA;
+    width: 80%;
+    text-align: center;
+    color: #252A34;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.displayFriends{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}

@@ -7,6 +7,8 @@ const blink = "http://localhost:3123"
 export default function Session() {
     const { id } = useParams();
     const [data,setdata] = useState({});
+    const [notes,setnotes]=useState(false);
+    const [note,setnote]=useState("");
     const nav = useNavigate();
     const [timelines,settimes]=useState([]);
     const [minute,setminute]=useState(0);
@@ -45,7 +47,6 @@ export default function Session() {
                 }else{
                     setsecond((prev)=> prev+1);
                 }
-
                 if(minute==timelines[index]-1 && second==59){
                     setminute(0);
                     setsecond(0);
@@ -77,6 +78,7 @@ export default function Session() {
             body: JSON.stringify({
               id: id,
               durcom: tot,
+              note: note,
               status: data.progress+tot==0 ? "upcoming" :  Math.abs((new Date(data.enddate)-new Date(data.startdate))/60000)-data.progress-tot-data.skipped > 0 ? "ongoing" : "completed"
             })
         })
@@ -101,6 +103,7 @@ export default function Session() {
           }else if(resp.data){
             setdata(resp.data);
             CreateTimer(resp.data);
+            setnote(resp.note);
           }
     }
     useEffect(()=>{
@@ -128,11 +131,17 @@ export default function Session() {
         <div className='head'>
             <h1>{data.subject}</h1>
             <img src={Pause} onClick={handlePause}/>
+            <button id="btn" onClick={()=>{setnotes(!notes)}}>{!notes ? "Add Notes":"Close"}</button>
         </div>
-        <div className='Timer'>
+        <div className='Timer' style={notes ? {filter: "blur(10px)"}:{}}>
             <h1>{String(minute).padStart(2,'0')}:{String(second).padStart(2,'0')}</h1>
             {index%2==0 ? <h2>Study Time</h2>:<h2>Break Time</h2>}
+            
+            
         </div>
+        {notes ? <div className='Notepad'>
+                <textarea value={note} onChange={(e)=>setnote(e.target.value)}></textarea>
+            </div>:""}
 
         <div className='warn'>
             <h2>Session Pause and Progress Handling</h2>

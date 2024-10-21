@@ -25,4 +25,113 @@
     box-shadow: 0 0 5px #FF2E63, 0 0 20px #FF2E63, 0 0 50px #FF2E63,
       0 0 100px #FF2E63;
 }
-  
+
+.ExamInput{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: rgb(8, 217, 214,0.7);
+  border-radius: 20px 20px 20px 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  gap: 25px;
+  z-index: 2;
+  width: 30%;
+}
+
+.ExamInput>h1{
+  color: #FF2E63;
+}
+
+.ExamInput>input{
+  background-color: #EAEAEA;
+  width: 250px;
+  height: 40px;
+  border: 1px solid #FF2E63;
+  font-size: 25px;
+  color: #08D9D6;
+}
+
+.ExamCard {
+  background-color: #252A34; /* Dark background */
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 350px;
+  margin: 20px auto;
+  text-align: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #EAEAEA; /* Light text color */
+  transition: transform 0.2s ease;
+}
+
+.ExamCard:hover {
+  transform: translateY(-5px); /* Lift effect */
+}
+
+.Examsubject {
+  color: #08D9D6; /* Bright teal */
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.ExamCard p {
+  color: #EAEAEA;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.ExamCard p strong {
+  color: #FF2E63; /* Strong red for emphasis */
+}
+
+.ExamButtons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+}
+
+.btn {
+  padding: 8px 16px;
+  background-color: #08D9D6; /* Teal button */
+  color: #252A34; /* Dark text on button */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background-color: #FF2E63; /* Red hover effect */
+  color: #EAEAEA; /* Light text on hover */
+}
+
+.delete-btn {
+  background-color: #FF2E63; /* Red button */
+  color: #EAEAEA; /* Light text */
+}
+
+.delete-btn:hover {
+  background-color: #08D9D6; /* Teal hover */
+  color: #252A34; /* Dark text on hover */
+}
+
+.edit-input {
+  width: 100px;
+  padding: 3px;
+  font-size: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #FF2E63; /* Red border */
+  background-color: #EAEAEA; /* Light input background */
+  color: #252A34; /* Dark text */
+}
+
+

@@ -49,12 +49,12 @@ export default function Assignments() {
         }
     }
     return (
-        <div ><Nav button={popped ? "Close" : "Add Assignment"} clicked={toggle} />
+        <div><Nav button={popped ? "Close" : "Add Assignment"} clicked={toggle} />
             <div style={popped ? { filter: "blur(5px)" } : {}}>
                 <AssignmentBlock />
             </div>
             <div >
-                {popped ? <div className="form-container">
+                {popped ? <div className="form-container" style={{marginBottom: "20px"}}>
                     <h2>Assignment</h2>
                     <form>
                         <div class="form-group">

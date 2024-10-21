@@ -28,6 +28,10 @@ const study = new Schema({
     skipped:{
         type: Number,
         default: 0
+    },
+    note: {
+        type: String,
+        default: ""
     }
 })
 const Study = mongoose.model("Study",study);

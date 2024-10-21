@@ -13,7 +13,7 @@ export default function Nav(props) {
           <h3 onClick={() => navigate("/study")}>Study Session</h3>
           <h3 onClick={() => navigate("/assignments")}>Assigments</h3>
           <h3 onClick={() => navigate("/resource")}>Resources</h3>
-          <h3>Exams</h3>
+          <h3 onClick={() => navigate("/exams")}>Exams</h3>
           <h3 onClick={() => navigate("/profile")}>profile</h3>
         </div>:""}
         {props.button ? <button id="btn" style={{ width: "fit-content", marginRight: "5%" }} onClick={props.clicked}>{props.button}</button> : ""}

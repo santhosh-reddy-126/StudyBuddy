@@ -52,10 +52,9 @@ export default function Session(props) {
         <h4>{props.skip>0 ? `You Skipped ${props.skip} mins`:""}</h4>
       </div>
       <div className='visual'>
-          {props.prog+props.skip>=duration2 ? "":<img src={play} width={100} height={100} onClick={()=>{nav("/study/session/"+props.id)}}/>}
-          {props.prog==0 ? <h2>Start</h2>: (props.prog+props.skip)>=duration2 ? <h2>Completed</h2>:<h2>Resume</h2>}
+          <img src={play} width={100} height={100} onClick={()=>{nav("/study/session/"+props.id)}}/>
+          {(props.prog + props.skip) ==0 ? <h2>Start</h2>: (props.prog+props.skip)>=duration2 ? <h2>Completed</h2>:<h2>Resume</h2>}
       </div>
-      
     </div>
     <div className='delete'>
       {props.del ? <img src={del} width={30} height={30} onClick={handleDelete}/>:""}

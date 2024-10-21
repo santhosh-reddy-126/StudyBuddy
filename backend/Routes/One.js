@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import bcrypt from "bcryptjs";
+import Profile from "../schema/Profile.js";
 import mongoose from "mongoose";
 import user from "../schema/User.js"
 import jsonwebtoken from "jsonwebtoken";
@@ -29,6 +30,9 @@ router.post("/createuser", async (req, res) => {
             const data2 = await user.create({
                 username: req.body.name,
                 password: secpass
+            })
+            const data3 = await Profile.create({
+                username: req.body.name
             })
             res.send({ success: true });
 

@@ -62,14 +62,14 @@ router.post("/getAssignment", async (req, res) => {
         const data = await assign.find({
             Username: req.body.username
         });
-        const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7); 
+        // const sevenDaysAgo = new Date();
+        // sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7); 
 
-        if (sevenDaysAgo.getDay() === 0) {
-            const result = await Study.deleteMany({
-                startdate: { $lt: sevenDaysAgo }
-            });
-        }
+        // if (sevenDaysAgo.getDay() === 0) {
+        //     const result = await Study.deleteMany({
+        //         startdate: { $lt: sevenDaysAgo }
+        //     });
+        // }
         res.send({ success: true, data: data });
     } catch (e) {
         console.log(e);
@@ -220,7 +220,8 @@ router.post("/createsession", async (req, res) => {
                 username: req.body.username,
                 subject: req.body.data.Subject,
                 startdate: start,
-                enddate: end
+                enddate: end,
+                status: "upcoming"
             });
             res.send({ success: true });
         } else {
@@ -239,14 +240,25 @@ router.post("/getsession", async (req, res) => {
 
         const updatesProgress = await Study.updateMany(
             {
-                startdate: { $lt: base }  // Only update documents where startdate < base
+                $and: [ 
+                    { startdate: { $lt: base } }, 
+                    { enddate: { $gt: base } } 
+                ] 
             },
             [
                 {
                     $set: {
                         skipped: {
                             $trunc: {
-                                $divide: [{ $subtract: [base, "$startdate"] }, 60000]  // Calculate the time difference in minutes and truncate the result
+                                $subtract: [
+                                    {
+                                        $divide: [
+                                            { $subtract: [base, "$startdate"] },
+                                            60000
+                                        ]
+                                    },
+                                    "$progress"  
+                                ]
                             }
                         },
                         status: "ongoing"
@@ -255,18 +267,36 @@ router.post("/getsession", async (req, res) => {
             ]
         );
 
-        const updatesProgress2 = await Study.updateMany(
+        const updatesProgress4 = await Study.updateMany(
             {
-                enddate: { $lt: base }  // Only update documents where startdate < base
+                
+                 enddate: { $lt: base } 
+
             },
             [
                 {
                     $set: {
+                        skipped: {
+                            $trunc: {
+                                $subtract: [
+                                    {
+                                        $divide: [
+                                            { $subtract: ["$enddate", "$startdate"] },
+                                            60000
+                                        ]
+                                    },
+                                    "$progress"  // Subtract the progress field
+                                ]
+                            }
+                        },
                         status: "completed"
                     }
                 }
             ]
         );
+        
+        
+
 
         const getcompleted = await Study.find({
             username: req.body.username,
@@ -323,7 +353,7 @@ router.post("/playsession", async (req, res) => {
         const base = new Date(new Date().getTime() + (5.5 * 60 * 60 * 1000));
         const data = await Study.findById(req.body.id);
         if (data && data.startdate <= base) {
-            res.send({ success: true, data: data })
+            res.send({ success: true, data: data, note: data.note })
         } else if (data && data.startdate > base) {
             res.send({ success: false, msg: "Time not started" })
         } else {
@@ -341,7 +371,7 @@ router.post("/pausesession", async (req, res) => {
             req.body.id,
             {
                 $inc: { progress: Number(req.body.durcom) },
-                $set: { status: req.body.status }
+                $set: { status: req.body.status, note: req.body.note }
             },
             { new: true }
         );
