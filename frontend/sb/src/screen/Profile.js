@@ -8,13 +8,13 @@ export default function Profile() {
   const [sdata,setsdata] = useState({});
   const [search,setsearch]=useState("");
   const [friend,setfriend]=useState([]);
-  const getData=async()=>{
+  const getData=async(a)=>{
     const data = await fetch(blink+"/api/getProfile",{
       method: "POST",
       headers:{
         "Content-Type":"application/json"
       },
-      body:JSON.stringify({username: localStorage.getItem("username")})
+      body:JSON.stringify({username: a})
     });
     const resp = await data.json();
     if(!resp.success){
@@ -40,8 +40,22 @@ export default function Profile() {
       setfriend(resp.data);
     }
   }
+
+  const addFriend=async(a)=>{
+    const data = await fetch(blink+"/api/addFriend",{
+      method: "POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({username: localStorage.getItem("username"),fusername: a})
+    });
+    const resp = await data.json();
+    if(!resp.success){
+      alert(resp.msg);
+    }
+  }
   useEffect(() => {
-    getData();
+    getData(localStorage.getItem("username"));
     
   }, []);
   return (
@@ -50,8 +64,13 @@ export default function Profile() {
         <div className='ProfilePart'>
             <img src={profile} width={300} height={300}/>
             <div className='ProfileText'>
-                <h1>{localStorage.getItem("username")}</h1>
-                <p>{data.avgHours<=1.5 ? "Beginner": data.avgHours<=4.5 ? "Intermediate":"Expert"}</p>
+                <h1>{data.username}</h1>
+                <div>
+                    <p>{data.avgHours<=1.5 ? "Beginner": data.avgHours<=4.5 ? "Intermediate":"Expert"}</p>
+                    {data && data.username === localStorage.getItem("username") ? "" : data && data.friends && !data.friends.includes(localStorage.getItem("username")) ? <button id="btn" onClick={() => addFriend(data.username)}>Add Friend</button> : <button id="btn" disabled>Friend</button>}
+
+                </div>
+                
             </div>
         </div>
         <div className='Stats'>
@@ -66,7 +85,7 @@ export default function Profile() {
               {friend ? friend.filter((items) => {
                     return (items.username).toLowerCase().includes(search.toLowerCase());
               }).map((item) => {
-                  return (<h1 key={item.username}>{item.username}</h1>);
+                  return (<h1 key={item.username} onClick={()=>getData(item.username)}>{item.username}</h1>);
               }): "No Friends Added"}
               </div>
         </div>

@@ -91,4 +91,15 @@ router.post("/getFriend",async(req,res)=>{
         console.log(e);
     }
 })
+
+router.post("/addFriend",async(req,res)=>{
+    try{
+        const data = await Profile.updateOne({username: req.body.username},{$push:{friends: req.body.fusername}});
+        const data2 = await Profile.updateOne({username: req.body.fusername},{$push:{friends: req.body.username}});
+        res.send({success: true});
+    }catch(e){
+        res.send({success: false,msg:"Something went wrong!"});
+        console.log(e);
+    }
+})
 export default router;

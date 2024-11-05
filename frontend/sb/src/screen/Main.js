@@ -103,6 +103,9 @@ export default function Main() {
             </div>:""}
           </div>
         </div>
+        <div classname="LeaderBoard">
+          
+        </div>
       </div>
     </div>
   )
