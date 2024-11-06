@@ -53,7 +53,7 @@ export default function Resource() {
     <div><Nav/>
       <GoogleOAuth func={getFiles} ref={googleRef}/>
       <div className="UserFiles">
-        <h1>Your Files</h1>
+        {localStorage.getItem("logged")===true ? <div><h1>Your Files</h1>
         <div className='userfiles2'>
           {data ? data.map((items) => (
             <div>
@@ -66,7 +66,8 @@ export default function Resource() {
             </div>
           )) : ""}
 
-        </div>
+        </div></div>:""}
+        
       </div>
     </div>
 
