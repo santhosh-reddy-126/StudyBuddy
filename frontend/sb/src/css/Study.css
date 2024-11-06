@@ -76,7 +76,7 @@ input[type="date"],input[name="Subject"],input[type="time"]{
 .one{
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -86,3 +86,49 @@ input[type="date"],input[name="Subject"],input[type="time"]{
     top: 10%;
     left: 10%;
 }
+
+@media screen and (max-width: 1250px){
+    .forms{
+        left: 35%
+    }
+}
+
+@media screen and (max-width: 810px){
+    .forms{
+        left: 30%
+    }
+}
+
+@media screen and (max-width: 610px){
+    .forms{
+        left: 20%
+    }
+}
+
+
+@media screen and (max-width: 400px){
+    .forms{
+        left: 5%
+    }
+}
+@media screen and (max-width: 480px){
+    .sessionUnit{
+        width: 340px;
+    }
+
+    .warn>h2{
+        font-size: 25px;
+    }
+
+    .warn>ol li{
+        font-size: 15px;
+    }
+
+    .warn{
+        height: 150px;
+    }
+    .forms{
+        left: 10%
+    }
+}
+

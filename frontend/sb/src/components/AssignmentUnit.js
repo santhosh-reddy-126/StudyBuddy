@@ -22,7 +22,7 @@ export default function AssignmentUnit(props) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ id: props.id , prog: prog})
+        body: JSON.stringify({ id: props.id , prog: prog, username: localStorage.getItem("username")})
       });
       const resp = await data.json();
       if (resp.success) {
@@ -61,7 +61,7 @@ export default function AssignmentUnit(props) {
         <h3 style={{ color: "#FF2E63" }}>{props.progress}%</h3>
         <h3 style={{ color: "#FF2E63" }}>{Math.round((props.progress / 100) * props.dur * 1000) / 1000}hrs</h3>
       </div>
-      {inp ? <input type='number' placeholder='progress' value={prog} onChange={(e) => setprog(e.target.value)} /> : <div style={{width:`${(props.progress/100)*400}px`,backgroundColor:"red",height:"3px"}}></div>}
+      {inp ? <input type='number' placeholder='progress' value={prog} onChange={(e) => setprog(e.target.value)} /> : ""/*** <div style={{width:`${(props.progress/100)*400}px`,backgroundColor:"red",height:"3px"}}></div> ***/ }
       <hr />
       <p>{props.note}</p>
       <div className='dt'>

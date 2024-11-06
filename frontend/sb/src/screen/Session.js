@@ -131,7 +131,7 @@ export default function Session() {
         <div className='head'>
             <h1>{data.subject}</h1>
             <img src={Pause} onClick={handlePause}/>
-            <button id="btn" onClick={()=>{setnotes(!notes)}}>{!notes ? "Add Notes":"Close"}</button>
+            <button id="btn11" onClick={()=>{setnotes(!notes)}}>{!notes ? "Add Notes":"Close"}</button>
         </div>
         <div className='Timer' style={notes ? {filter: "blur(10px)"}:{}}>
             <h1>{String(minute).padStart(2,'0')}:{String(second).padStart(2,'0')}</h1>

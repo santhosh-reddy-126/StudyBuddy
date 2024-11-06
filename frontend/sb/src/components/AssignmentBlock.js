@@ -27,7 +27,7 @@ export default function AssignmentBlock() {
     return (
         <div>
             <div className='GameChanging'>
-                <h1>Game Changing Assigments</h1>
+                <h1>Game Changing Assignments</h1>
                 <div className='items'>
 
                 
@@ -38,7 +38,7 @@ export default function AssignmentBlock() {
                 </div>
             </div>
             <div className='Considerable'>
-                <h1>Considerable Assigments</h1>
+                <h1>Considerable Assignments</h1>
                 <div className='items'>
                 {Data ? Data.filter(item => item.Importance == "Considerable")
                     .map(items => (
@@ -47,7 +47,7 @@ export default function AssignmentBlock() {
                 </div>
             </div>
             <div className='Negligible'>
-                <h1>Negligible Assigments</h1>
+                <h1>Negligible Assignments</h1>
                 <div className='items'>
                 {Data ? Data.filter(item => item.Importance == "Negligible")
                     .map(items => (

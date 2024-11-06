@@ -1,3 +1,18 @@
 Disconnect google account of rrsource when logged out
 
 update weekly hours every sunday
+
+
+
+@media screen and (max-width: 1200px){
+    
+}
+
+@media screen and (max-width: 830px){
+     
+}
+
+
+@media screen and (max-width: 480px){
+    
+}

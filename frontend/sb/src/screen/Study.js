@@ -88,7 +88,7 @@ export default function Study() {
           <div className='one'>
             
             {Data ? Data.map((items) => (
-              items.status === "completed" ? <Session subject={items.subject} sdate={items.startdate} edate={items.enddate} prog={items.progress} id={items._id} skip={items.skipped} func={getData} del={true}/> : ""
+              items.status === "completed" || items.status === "updated" ? <Session subject={items.subject} sdate={items.startdate} edate={items.enddate} prog={items.progress} id={items._id} skip={items.skipped} func={getData} del={true}/> : ""
             )) : ""}
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function Study() {
             <label>End Time: </label><br />
             <input type="time" name="etime" value={data.etime} onChange={handleChange} />
           </div>
-          <button id='btn' onClick={CreateStudy}>Create</button>
+          <button id='btn11' onClick={CreateStudy}>Create</button>
         </div> : ""}
         <div className='warn'>
             <h2>Weekly Challenge Progress Criteria</h2>

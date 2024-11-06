@@ -40,7 +40,7 @@ export default function Session(props) {
   }
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return (
-    <div style={{position:"relative"}}>
+    <div style={{position:"relative"}} id='homesess'>
 
     
     <div className='sessionUnit'>

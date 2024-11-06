@@ -54,6 +54,7 @@
     width: 400px;
     background-color: #EAEAEA;
     height: fit-content;
+    margin-bottom: 25px;
 }
 
 .Future2 p{
@@ -69,4 +70,10 @@
 
 .Future2:hover{
     background-color: #d4d4d4;
+}
+
+@media screen and (max-width: 600px){
+    .Future2{
+        width: 300px;
+    }
 }

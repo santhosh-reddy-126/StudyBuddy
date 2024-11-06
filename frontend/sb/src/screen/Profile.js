@@ -62,12 +62,12 @@ export default function Profile() {
     <div>
         <Nav />
         <div className='ProfilePart'>
-            <img src={profile} width={300} height={300}/>
+            <img src={profile} />
             <div className='ProfileText'>
                 <h1>{data.username}</h1>
                 <div>
                     <p>{data.avgHours<=1.5 ? "Beginner": data.avgHours<=4.5 ? "Intermediate":"Expert"}</p>
-                    {data && data.username === localStorage.getItem("username") ? "" : data && data.friends && !data.friends.includes(localStorage.getItem("username")) ? <button id="btn" onClick={() => addFriend(data.username)}>Add Friend</button> : <button id="btn" disabled>Friend</button>}
+                    {data && data.username === localStorage.getItem("username") ? "" : data && data.friends && !data.friends.includes(localStorage.getItem("username")) ? <button id="btn11" onClick={() => addFriend(data.username)}>Add Friend</button> : <button id="btn11" disabled>Friend</button>}
 
                 </div>
                 

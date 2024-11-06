@@ -185,7 +185,7 @@ const GoogleDriveUserUpload = forwardRef((props, ref) => {
                         <input type="text" placeholder='filename' value={filename} onChange={(e) => setname(e.target.value)} />
                         <input type="text" placeholder='Subject' value={sub} onChange={(e) => setsub(e.target.value)} />
                         {loading ? <div class="loader"></div> : <h2 style={{ color: "#FF2E63" }}>{msg}</h2>}
-                        <button id="btn" onClick={handleFileUpload} style={{ width: "120px" }}>Upload</button>
+                        <button id="btn11" onClick={handleFileUpload} style={{ width: "120px" }}>Upload</button>
                     </div>
                 </>
             )}

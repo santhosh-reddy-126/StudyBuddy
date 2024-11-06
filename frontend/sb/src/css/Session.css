@@ -3,12 +3,15 @@
     flex-direction: row;
     color: #FF2E63;
     justify-content:space-evenly;
+    align-items: center;
 }
 
-.head>#btn{
+.head>#btn11{
     width: 300px;
     height: 60px;
     font-size: 30px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .head>h1{
@@ -57,9 +60,78 @@ textarea{
     color: #EAEAEA;
     background-color: #FF2E63;
     width: 100%;
-    height: 350px;
+    height: fit-content;
     font-size: 30px;
     text-align: center;
     align-content: center;
 }
 
+@media screen and (max-width: 1300px){
+    .head>#btn11{
+        width: 240px;
+        height: 48px;
+        font-size: 25px;
+    }
+    .head>h1{
+        font-size: 40px;
+    }
+
+    .head>img{
+        width: 50px;
+        height: 50px;
+    }
+    .Timer>h1{
+        font-size: 350px;
+    }
+
+    .Timer>h2{
+        font-size: 60px;
+    }
+}
+@media screen and (max-width: 830px){
+    .head>#btn11{
+        width: 200px;
+        height: 45px;
+        font-size: 22px;
+    }
+    .head>h1{
+        font-size: 35px;
+    }
+
+    .head>img{
+        width: 45px;
+        height: 45px;
+    }
+    .Timer>h1{
+        font-size: 200px;
+        margin-bottom: 0px;
+    }
+
+    .Timer>h2{
+        font-size: 40px;
+    }
+}
+
+
+@media screen and (max-width: 480px){
+    .head>#btn11{
+        width: 150px;
+        height: 20px;
+        font-size: 18px;
+    }
+    .head>h1{
+        font-size: 30px;
+    }
+
+    .head>img{
+        width: 40px;
+        height: 40px;
+    }
+    .Timer>h1{
+        font-size: 150px;
+        margin-bottom: 0px;
+    }
+    .Timer>h2{
+        font-size: 30px;
+    }
+}

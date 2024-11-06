@@ -62,6 +62,7 @@ router.post("/getAssignment", async (req, res) => {
         const data = await assign.find({
             Username: req.body.username
         });
+
         // const sevenDaysAgo = new Date();
         // sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7); 
 
@@ -76,9 +77,20 @@ router.post("/getAssignment", async (req, res) => {
         res.send({ success: false });
     }
 })
+const diff = {
+    "Game Changing": 15,
+    "Negligible": 5,
+    "Considerable": 10
+};
 
 router.post("/updateProgress", async (req, res) => {
     try {
+        const data1 = await assign.findOne({
+            _id: req.body.id
+        })
+        const data2 = await STATS.updateOne({
+            username: req.body.username
+        },{$inc: {coins: Math.floor(((req.body.prog-data1.Progress)/100)*diff[data1.Importance])}})
         const data = await assign.updateOne({
             _id: req.body.id
         }, { $set: { Progress: req.body.prog } });
@@ -144,7 +156,12 @@ router.post("/getRecent", async (req, res) => {
         if (data4) {
             sessions.push(data4)
         }
-        res.send({ success: true, data: assigns[0], sessdata: sessions[0] });
+        const data5 = await STATS.findOne({
+            username: req.body.username
+        })
+
+        const data6 = await STATS.find().sort({coins: -1}).limit(10);
+        res.send({ success: true, data: assigns[0], sessdata: sessions[0], stats: data5, lb: data6});
     } catch (e) {
         console.log(e);
         res.send({ success: false });
@@ -242,7 +259,8 @@ router.post("/getsession", async (req, res) => {
             {
                 $and: [ 
                     { startdate: { $lt: base } }, 
-                    { enddate: { $gt: base } } 
+                    { enddate: { $gt: base } } ,
+                    { status: { $ne: "updated" } }
                 ] 
             },
             [
@@ -270,8 +288,10 @@ router.post("/getsession", async (req, res) => {
         const updatesProgress4 = await Study.updateMany(
             {
                 
-                 enddate: { $lt: base } 
-
+                $and: [ 
+                    { enddate: { $lt: base } } ,
+                    { status: { $ne: "updated" } }
+                ]
             },
             [
                 {
@@ -295,23 +315,29 @@ router.post("/getsession", async (req, res) => {
             ]
         );
         
-        
-
 
         const getcompleted = await Study.find({
             username: req.body.username,
             status: "completed"
         });
+        let count=0;
         let total_hrs = 0;
         for (let k = 0; k < getcompleted.length; k++) {
-
+            
             const sdate = new Date(new Date(getcompleted[k].startdate).getTime() - (5.5 * 60 * 60 * 1000));
             const edate = new Date(new Date(getcompleted[k].enddate).getTime() - (5.5 * 60 * 60 * 1000));
             const duration2 = Math.max(0, Math.abs((edate - sdate) / 60000));
+            if(sdate.getDay()==0 || sdate.getDay()==6){
+                count++;
+            }
             if (0.75 * duration2 < getcompleted[k].progress) {
                 total_hrs += duration2;
             }
         }
+        const setcompleted = await Study.updateOne({
+            username: req.body.username,
+            status: "completed"
+        },{$set :{status: "updated"}});
         const check = await STATS.findOne({
             username: req.body.username
         });
@@ -319,7 +345,7 @@ router.post("/getsession", async (req, res) => {
             const updateStats = await STATS.updateOne({
                 username: req.body.username
             }, {
-                $inc: { weeklysesshours: Number(total_hrs), totalsesshours: Number(total_hrs) }
+                $inc: { weeklysesshours: Number(total_hrs), totalsesshours: Number(total_hrs),coins: (Math.floor(Number(total_hrs/60)*5)+(count*10))/2 }
             })
         } else {
             const check2 = await STATS.create({
@@ -328,14 +354,22 @@ router.post("/getsession", async (req, res) => {
             const updateStats = await STATS.updateOne({
                 username: req.body.username
             }, {
-                $inc: { weeklysesshours: Number(total_hrs), totalsesshours: Number(total_hrs) }
+                $inc: { weeklysesshours: Number(total_hrs), totalsesshours: Number(total_hrs),coins: (Math.floor(Number(total_hrs/60)*5)+(count*10))/2 }
             })
         }
-
+        
 
         const data1 = await Study.find({
             username: req.body.username
         });
+        if(new Date().getDay()==0){
+            const updateweek = await STATS.updateOne({
+                username: req.body.username
+            },{
+                $set: {weeklysesshours: 0}
+            });
+        }
+        
         if (data1.length > 0) {
             res.send({ success: true, data: data1 });
         } else {

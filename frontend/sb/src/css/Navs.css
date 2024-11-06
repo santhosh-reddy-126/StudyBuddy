@@ -1,15 +1,61 @@
-.navitems>h3 {
+/* Navbar */
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Logo */
+#logos {
+    width: 240px;
+    height: 60px;
+    margin-top: 40px;
+    padding-left: 2%;
+}
+
+/* Navigation items */
+.navitems {
+    color: #08D9D6;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.navitems > h3 {
     cursor: pointer;
 }
 
-.navitems{
-    margin-right: 20px;
-}
-
-.navitems>h3:hover {
+.navitems > h3:hover {
     color: #FF2E63;
 }
 
+/* Button */
+#btn {
+    width: fit-content;
+    margin-right: 5%;
+}
+
+#btn22{
+    width: fit-content;
+    background-color: #252A34;
+    border: 2px solid #08D9D6;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Hamburger icon */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #08D9D6;
+}
 .gbtn {
     background-color: #08D9D6;
     color: #252A34;
@@ -18,7 +64,7 @@
     font-size: 25px;
     padding: 10px;
     position: absolute;
-    left: 70%;
+    left: 68%;
     top: 15%;
 }
 
@@ -42,6 +88,15 @@ input[type="file"]:focus {
     outline: none;
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .fbtn {
     background-color: #08D9D6;
     color: #FFFFFF;
@@ -58,6 +113,107 @@ input[type="file"]:focus {
     background-color: #FF2E63;
 }
 
+/* Media Queries */
+
+/* Show sidebar and hamburger on smaller screens */
+@media screen and (max-width: 1300px) {
+    .navitems, #btn {
+        display: none; /* Hide nav items and button */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .sidebar {
+        width: 100%; /* Full width for mobile */
+        max-width: 250px;
+    }
+
+    .gbtn{
+        font-size: 20px;
+        left: 60%;
+    }
+}
+
+
+@media screen and (max-width: 1180px) {
+    .gbtn{
+        font-size: 20px;
+        left: 45%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .gbtn{
+        font-size: 17px;
+        left: 40%;
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .gbtn{
+        font-size: 17px;
+        left: 20%;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .gbtn{
+        font-size: 17px;
+        left: 10%;
+        width: 300px;
+    }
+
+    .loader {
+        border: 5px solid #EAEAEA;
+        border-top: 5px solid #FF2E63; 
+        width: 40px; 
+        height: 40px; 
+        animation: spin 1s linear infinite; 
+    }
+    
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #252A34;
+    color: #08D9D6;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    z-index: 1000;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+/* Close button */
+.close-btn {
+    align-self: flex-end;
+    font-size: 30px;
+    cursor: pointer;
+    color: #FF2E63;
+}
+
+.sidebar h3, .sidebar button {
+    color: #08D9D6;
+    cursor: pointer;
+}
+
+.sidebar h3:hover, .sidebar button:hover {
+    color: #FF2E63;
+}
+
+
 .input21{
     display: flex;
     flex-direction: column;
@@ -67,15 +223,15 @@ input[type="file"]:focus {
     width: fit-content;
     padding: 10px;
     gap: 20px;
-    margin-top: 20px;
     border-radius: 5%;
-    margin-left: 35%;
-    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
     border: 2px solid #08D9D6;
 }
 
 .input21>input{
-    width: 400px;
+    width: 80%;
     height: 30px;
     border: 3px solid #08D9D6;
     color: #FF2E63; 
@@ -89,13 +245,4 @@ input[type="file"]:focus {
     width: 50px; 
     height: 50px; 
     animation: spin 1s linear infinite; 
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }
