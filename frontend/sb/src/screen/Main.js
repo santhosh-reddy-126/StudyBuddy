@@ -115,7 +115,7 @@ export default function Main() {
             )}
             <div className="coins">
               <div>
-                <h1>{statdata.coins}</h1>
+                <h1>{statdata.coins!=null ? statdata.coins : 0}</h1>
                 <img src={coin} width={100} height={100} />
               </div>{" "}
             </div>
