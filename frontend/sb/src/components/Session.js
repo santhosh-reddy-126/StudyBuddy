@@ -3,7 +3,7 @@ import "../css/Study.css"
 import play from "../images/play.png";
 import del from "../images/delete2.png";
 import { useNavigate } from 'react-router-dom';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Session(props) {
   const sdate = new Date(new Date(props.sdate).getTime()-(5.5 * 60 * 60 * 1000));
   const edate = new Date(new Date(props.edate).getTime()-(5.5 * 60 * 60 * 1000));

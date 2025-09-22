@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Nav from '../components/Nav'
 import "../css/Study.css"
 import Session from '../components/Session';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Study() {
   const [popped, setpopped] = useState(false);
   const [Data, setData] = useState([]);

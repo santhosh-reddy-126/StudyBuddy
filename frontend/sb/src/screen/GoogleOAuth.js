@@ -4,7 +4,7 @@ import "../css/Navs.css"
 const CLIENT_ID = '298627830132-2akqakht3jcdsaqhnfumf6a7eeldrpo3.apps.googleusercontent.com'; // Replace with your Google Client ID
 const API_KEY = 'AIzaSyAWcIWLDzGn_Fo8ojeioriNbrMA8-nd7yg'; // Replace with your Google API Key
 const SCOPES = 'https://www.googleapis.com/auth/drive.file'; // Adjust based on the permissions you need
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 const GoogleDriveUserUpload = forwardRef((props, ref) => {
     const [isSignedIn, setIsSignedIn] = useState(false);
     const [userInfo, setUserInfo] = useState(null);

@@ -3,7 +3,7 @@ import Nav from "../components/Nav.js"
 import GoogleOAuth from './GoogleOAuth.js'
 import "../css/Future.css"
 import FIle from '../components/FIle.js'
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Resource() {
   const [data, setdata] = useState([]);
   const googleRef = useRef();

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../css/Lecture.css"
 import { useNavigate } from 'react-router-dom';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 const colorPalette = {
     "colors": {
         "easy": {

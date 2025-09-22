@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Nav from '../components/Nav'
 import "../css/Button.css";
 import Exam from '../components/Exam';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Exams() {
     const [popped,setpopped] = useState(false);
     const [data,setdata] = useState([]);

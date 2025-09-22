@@ -2,7 +2,7 @@ import React,{useEffect,useState} from 'react'
 import Nav from '../components/Nav'
 import profile from "../images/profile.png"
 import "../css/Profile.css"
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Profile() {
   const [data,setdata] = useState({});
   const [sdata,setsdata] = useState({});

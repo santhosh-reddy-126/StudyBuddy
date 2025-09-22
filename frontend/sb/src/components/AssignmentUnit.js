@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../css/Lecture.css"
 import del from "../images/delete.png"
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function AssignmentUnit(props) {
   const [date, setdate] = useState("");
   const [time, settime] = useState("");

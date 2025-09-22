@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import "../css/Session.css"
 import Pause from "../images/Pause.png"
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 
 export default function Session() {
     const { id } = useParams();

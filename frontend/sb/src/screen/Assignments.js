@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Nav from '../components/Nav'
 import "../css/Form.css";
 import AssignmentBlock from '../components/AssignmentBlock';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Assignments() {
     const [popped, setpop] = useState("");// to create pop up window
     const [Data, setData] = useState({

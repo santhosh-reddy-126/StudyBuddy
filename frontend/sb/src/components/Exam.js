@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import "../css/Button.css"; 
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Exam(props) {
   const [edit,setedit]=useState(false);
   const [hours,sethours]=useState(props.hrs);

@@ -5,7 +5,7 @@ import "../css/Home.css";
 import "../css/Button.css"
 import Button from '../components/Button';
 import { Link, useNavigate } from 'react-router-dom';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Register() {
   const nav = useNavigate();
   const [data, setdata] = useState({

@@ -9,7 +9,7 @@ import Future from "../components/Future";
 import coin from "../images/coin.png";
 import Session from "../components/Session";
 
-const blink = "http://localhost:3123";
+const blink = "https://studybuddy-jn19.onrender.com";
 
 export default function Main() {
   const navigate = useNavigate();

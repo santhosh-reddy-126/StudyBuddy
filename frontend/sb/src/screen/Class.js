@@ -2,7 +2,7 @@ import React, { useEffect, useState,useRef } from 'react'
 import Nav from '../components/Nav'
 import "../css/Class.css";
 import Day from '../components/Day';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function Class() {
   const [popped, setpop] = useState(false);
   const [classs,setclass]=useState([]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import AssignmentUnit from './AssignmentUnit.js';
-const blink = "http://localhost:3123"
+const blink = "https://studybuddy-jn19.onrender.com"
 export default function AssignmentBlock() {
     const [Data, setData] = useState([]);
     const getAssignment = async () => {
